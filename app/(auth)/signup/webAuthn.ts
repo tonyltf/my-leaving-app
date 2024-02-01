@@ -22,6 +22,7 @@ export const generateOptions = async (formData: FormData) => {
     const userAuthenticators = await getUserAuthenticator(user.id);
     const options = await generateRegistrationOptions({
         rpName,
+        rpID,
         userID: user.id,
         userName: user.email,
         // Don't prompt users for additional information about the authenticator
@@ -54,6 +55,6 @@ export const generateOptions = async (formData: FormData) => {
     return options;
 }
 
-export const verifyRegistration = async (formData: FormData) => {
-
+export const verifyRegistration = async (data: any) => {
+    console.log({ data });
 }

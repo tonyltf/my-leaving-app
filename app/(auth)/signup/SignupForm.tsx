@@ -1,7 +1,7 @@
 "use client"
 import { startRegistration } from '@simplewebauthn/browser';
 
-import { generateOptions } from "./registerOption";
+import { generateOptions, verifyRegistration } from "./webAuthn";
 
 // import { useRouter } from "next/router";
 
@@ -16,7 +16,8 @@ export default function SignupForm() {
       try {
         const result = await generateOptions(formData);
         console.log({ result });
-        await startRegistration(result);
+        const attResp = await startRegistration(result);
+        await verifyRegistration(attResp)
 
       } catch (error) {
         console.error(error);
