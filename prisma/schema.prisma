@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id               String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name             String?
+  email            String?         @unique
+  currentChallenge String?         @map("current_challenge")
+  authenticators   Authenticator[]
+  createdAt        DateTime        @default(now()) @map("created_at")
+  updatedAt        DateTime        @default(now()) @updatedAt @map("updated_at")
+
+  @@map("user")
+}
+
+enum CredentialDeviceType {
+  singleDevice
+  multiDevice
+}
+
+enum AuthenticatorTransport {
+  usb
+  nfc
+  ble
+  internal
+}
+
+model Authenticator {
+  credentialId         String                   @id
+  credentialPublicKey  String                   @unique @map("credential_public_key")
+  counter              Int
+  credentialDeviceType CredentialDeviceType     @map("credential_device_type")
+  credentialBackedup   Boolean                  @map("credential_backed_up")
+  transports           AuthenticatorTransport[]
+  userId               String                   @map("user_id") @db.Uuid
+  user                 User                     @relation(fields: [userId], references: [id])
+  createdAt            DateTime                 @default(now()) @map("created_at")
+  updatedAt            DateTime                 @default(now()) @updatedAt @map("updated_at")
+
+  @@map("authenticator")
+}
