@@ -1,0 +1,10 @@
+{
+    "cSpell.words": [
+        "NEXTAUTH",
+        "webauthn"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.organizeImports": "explicit"
+    },
+}
