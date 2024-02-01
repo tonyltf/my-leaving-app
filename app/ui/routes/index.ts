@@ -1,6 +1,6 @@
 export const PageRoutes = Object.freeze({
-    dashboard: '/dashboard',
-    setting: '/setting',
-    login: '/login',
-    logout: '/logout',
+  dashboard: '/dashboard',
+  setting: '/setting',
+  login: '/login',
+  logout: '/logout',
 });
