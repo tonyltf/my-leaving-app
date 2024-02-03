@@ -1,5 +1,6 @@
 'use server';
 import { getOrCreateAuthUser, getUserAuthenticator, updateUser } from '@/app/lib/dao/user.dao';
+import { env } from '@/env/server.mjs';
 import {
     generateRegistrationOptions
 } from '@simplewebauthn/server';
@@ -8,7 +9,7 @@ import {
 // Human-readable title for your website
 const rpName = 'SimpleWebAuthn Example';
 // A unique identifier for your website
-const rpID = 'localhost';
+const rpID = env.DOMAIN ?? 'localhost';
 // The URL at which registrations and authentications should occur
 const origin = `https://${rpID}`;
 
