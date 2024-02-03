@@ -24,13 +24,13 @@ export const generateOptions = async (formData: FormData) => {
         rpName,
         rpID,
         userID: user.id,
-        userName: user.email,
+        userName: user.email ?? '',
         // Don't prompt users for additional information about the authenticator
         // (Recommended for smoother UX)
         attestationType: 'none',
         // Prevent users from re-registering existing authenticators
         excludeCredentials: userAuthenticators.map((authenticator) => ({
-            id: authenticator.credential_id,
+            id: Buffer.from(authenticator.credentialId),
             type: 'public-key',
             // Optional
             transports: authenticator.transports,
