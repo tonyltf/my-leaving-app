@@ -1,9 +1,9 @@
 import { env } from '@/env/server.mjs';
 
+import { PrismaAdapter } from '@auth/prisma-adapter';
+import { PrismaClient } from '@prisma/client/edge';
 import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
-import { PrismaAdapter } from '@auth/prisma-adapter';
-import { PrismaClient } from 'db';
 
 const prisma = new PrismaClient();
 
