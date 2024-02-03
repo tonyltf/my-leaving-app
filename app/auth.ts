@@ -1,6 +1,5 @@
 import { env } from '@/env/server.mjs';
 
-import { PrismaAdapter } from '@auth/prisma-adapter';
 import { PrismaClient } from '@prisma/client/edge';
 import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
@@ -11,7 +10,7 @@ export const {
   handlers: { GET, POST },
   auth,
 } = NextAuth({
-  adapter: PrismaAdapter(prisma),
+  // adapter: PrismaAdapter(prisma),
   providers: [Google({
     clientId: env.GOOGLE_ID,
     clientSecret: env.GOOGLE_SECRET,
